@@ -24,4 +24,15 @@ router.post('/', async (req, res) => {
   }
 });
 
+// GET ALL BLOG POSTS
+router.get('/', async (req, res) => {
+  try {
+    const allPosts = await db.find();
+
+    res.status(200).json(allPosts);
+  } catch {
+
+  }
+})
+
 module.exports = router;
