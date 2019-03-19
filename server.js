@@ -13,6 +13,6 @@ server.get('/', (req, res) => {
   `);
 });
 
-server.use('/api/db', dbRouter);
+server.use('/api/posts', dbRouter);
 
 module.exports = server;
