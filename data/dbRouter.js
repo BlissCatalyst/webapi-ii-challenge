@@ -80,9 +80,10 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const changes = await db.update(req.params.id, req.body);
+    const newPost = await db.findById(req.params.id);
 
     if(changes) {
-      res.status(200).json(changes);
+      res.status(200).json(newPost);
     } else {
       res.status(500).json({
         errorMessage: 'The post information could not be modified.'
