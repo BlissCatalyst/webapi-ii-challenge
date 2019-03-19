@@ -67,13 +67,32 @@ router.delete('/:id', async (req, res) => {
     } else {
       res.status(404).json({
         error: 'The post with the specified ID does not exist'
-      })
-    }
+      });
+    };
   } catch {
     res.status(500).json({
       message: 'The post could not be removed'
-    })
+    });
   }
-})
+});
+
+// UPDATE A POST
+router.put('/:id', async (req, res) => {
+  try {
+    const changes = await db.update(req.params.id, req.body);
+
+    if(changes) {
+      res.status(200).json(changes);
+    } else {
+      res.status(500).json({
+        errorMessage: 'The post information could not be modified.'
+      });
+    };
+  } catch {
+    res.status(400).json({
+      error: 'Please provide title and contents for the post.'
+    });
+  }
+});
 
 module.exports = router;
