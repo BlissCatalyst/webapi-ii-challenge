@@ -14,10 +14,10 @@ router.post('/', async (req, res) => {
     } else {
       res.status(500).json({
         error: 'There was an error while saving the post to the database'
-      })
+      });
     }
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
     res.status(400).json({
       errorMessage: 'Please provide title and contents for the post.'
     });
@@ -31,7 +31,9 @@ router.get('/', async (req, res) => {
 
     res.status(200).json(allPosts);
   } catch {
-
+    res.status(500).json({
+      error: 'The posts information could not be retrieved.'
+    })
   }
 });
 
