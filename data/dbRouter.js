@@ -45,11 +45,30 @@ router.get('/:id', async (req, res) => {
     } else {
       res.status(500).json({
         error: 'The post information could not be retrieved.'
-      })
+      });
     }
   } catch {
     res.status(404).json({
       message: 'The post with the specified ID does not exist'
+    });
+  }
+});
+
+// DELETE A POST
+router.delete('/:id', async (req, res) => {
+  try {
+    const delPost = await db.remove(req.params.id);
+
+    if(delPost) {
+      res.status(202).json(db.find());
+    } else {
+      res.status(404).json({
+        error: 'The post with the specified ID does not exist'
+      })
+    }
+  } catch {
+    res.status(500).json({
+      message: 'The post could not be removed'
     })
   }
 })
