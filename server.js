@@ -8,8 +8,7 @@ server.use(express.json());
 
 server.get('/', (req, res) => {
   res.send(`
-    <h2>Lambda db API</h2>
-    <p>Welcome to the Lambda db API</p>
+    <h1>This is an api from the "webapi-ii-challenge" assignment from earlier this week.</h1>
   `);
 });
 
